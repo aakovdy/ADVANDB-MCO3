@@ -34,6 +34,8 @@ public class Client implements Runnable {
 			
 			// Send query or result set to server
 			
+			clientSocket.close();
+			
 		} catch(Exception e){
 			System.out.println("Client not found!");
 		}

@@ -17,7 +17,11 @@ public class QueryManager {
 		try{
 			PreparedStatement pstmt = conn.prepareStatement(query);
 			
-			return pstmt.executeQuery();	// Returns the result set done by the query
+			ResultSet rs =  pstmt.executeQuery();	// Returns the result set done by the query
+			
+			pstmt.close();
+			conn.close();
+			return rs;
 			
 		} catch(Exception e){
 			e.printStackTrace();

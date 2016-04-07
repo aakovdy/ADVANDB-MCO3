@@ -6,10 +6,13 @@ import model.*;
 
 public class MainDriver {
 
+	private static ArrayList<Query> queryArrList;
+	private static ArrayList<Transaction> transactionArrList;
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//init queries
-		ArrayList<Query> queryArrList = new ArrayList<Query>();
+		queryArrList = new ArrayList<Query>();
 		
 		//READ
 		queryArrList.add(new Query("SELECT aquanitype, sum(aquani_vol) FROM hpq_aquani WHERE aquanitype IS NOT null GROUP BY aquanitype;"));
@@ -26,8 +29,14 @@ public class MainDriver {
 		//INSERT for internal use
 		queryArrList.add(new Query("INSERT INTO hpq_aquani  (hpq_hh_id, id, aquani_line, aquanitype, aquanitype_o, aquani_vol) VALUES (53922, 0, 6, 1, null ,50);"));
 		
+		//init transactions
+		transactionArrList = new ArrayList<Transaction>();
+		transactionArrList.add(new Transaction("T1", queryArrList));
+		transactionArrList.add(new Transaction("T2", queryArrList));
+		transactionArrList.add(new Transaction("T3", queryArrList));
 		
 		
+		//pass transactions to manager
 
 	}
 

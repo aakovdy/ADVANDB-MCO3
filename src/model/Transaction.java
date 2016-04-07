@@ -13,6 +13,16 @@ public class Transaction {
 		super();
 		this.name = name;
 	}
+	
+	
+
+	public Transaction(String name, ArrayList<Query> queryList) {
+		super();
+		this.name = name;
+		this.queryList = queryList;
+	}
+
+
 
 	public String getName() {
 		return name;

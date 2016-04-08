@@ -3,6 +3,9 @@ package db_services;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.swing.JTable;
 
 import db_manager.DBConnection;
 
@@ -24,6 +27,18 @@ public class QueryManager {
 			return rs;
 			
 		} catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public JTable displayQuery(ResultSet rs){
+		try {
+			while(rs.next()){
+				
+			}
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		

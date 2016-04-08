@@ -9,6 +9,7 @@ public class Client implements Runnable {
 	int portNum;
 	String ipAddress;
 	String query;
+	boolean status;
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
 	
@@ -17,10 +18,11 @@ public class Client implements Runnable {
 		this.ipAddress = ipAddress;
 	}
 	
-	public Client(int portNum, String ipAddress, String query){
+	public Client(int portNum, String ipAddress, String query, boolean status){
 		this.portNum = portNum;
 		this.ipAddress = ipAddress;
 		this.query = query;
+		this.status = status;
 	}
 	
 	public void setQuery(String query){
@@ -32,12 +34,13 @@ public class Client implements Runnable {
 		try{
 			// Connect to a server
 			Socket clientSocket = new Socket(ipAddress, portNum);
+			System.out.println("Connected to a client with IP Address " + ipAddress);
+			
 			
 			// Write to socket using ObjectOutputStream
 			oos = new ObjectOutputStream(clientSocket.getOutputStream());
-			System.out.println("Sending request to SocketServer");
 			
-			// Send query or result set to server
+			// Send query to server
 			
 			
 			clientSocket.close();

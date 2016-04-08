@@ -6,6 +6,7 @@ import java.net.Socket;
 public class Server implements Runnable {
 
 	int portNum;
+	boolean status;
 	ServerSocket socket;
 	
 	public Server(int portNum){
@@ -15,9 +16,13 @@ public class Server implements Runnable {
 	@Override
 	public void run() {
 		try {
-			socket = new ServerSocket(portNum);
+//			socket = new ServerSocket(portNum);
+			socket = new ServerSocket(9876);
 			
 			System.out.println("Connected to port " + portNum);
+			
+			System.out.println("Connected to port 9876");
+
 			System.out.println();
 			
 			// Listen to clients
@@ -30,8 +35,13 @@ public class Server implements Runnable {
 				String clientIP = connectSocket.getInetAddress().getHostAddress();
 				int clientPort = connectSocket.getPort();
 				
+				if (clientIP.equals("localhost")){
+					//do queries
+				}
+				
 				// Process query
 				// Return result to client
+				
 				
 				// Receive result and process query
 			}

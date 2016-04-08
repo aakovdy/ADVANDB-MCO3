@@ -46,9 +46,9 @@ public class QueryManager {
 		try{
 			
 			PreparedStatement pstmt = conn.prepareStatement(query);
-			if(query.contains("INSERT") || query.contains("UPDATE") || query.contains("DELETE")){
+			if(query.contains("INSERT") || query.contains("UPDATE") || query.contains("DELETE")){ //WRITE
 				pstmt.executeUpdate();
-			}else{
+			}else{ //READ
 				rs =  pstmt.executeQuery();			// Returns the result set done by the query
 			}
 			

@@ -16,11 +16,32 @@ public class QueryManager {
 	public QueryManager(){}
 	
 	// Process the query here -> READ and WRITE
-	public CachedRowSet processQuery(String query){
+	public CachedRowSet processQuery(String query, int isolationLevel){
 		
 		Connection conn = DBConnection.getConnection();
 		ResultSet rs = null;
 		CachedRowSetImpl crsi = null;
+		
+		try{
+			switch(isolationLevel){
+				case 1:
+					conn.setTransactionIsolation(conn.TRANSACTION_SERIALIZABLE);
+					break;
+				case 2:
+					conn.setTransactionIsolation(conn.TRANSACTION_READ_COMMITTED);
+					break;
+				case 3:
+					conn.setTransactionIsolation(conn.TRANSACTION_READ_UNCOMMITTED);
+					break;
+				case 4:
+					conn.setTransactionIsolation(conn.TRANSACTION_REPEATABLE_READ);
+					break;
+				default:
+					conn.setTransactionIsolation(conn.TRANSACTION_NONE);
+			}
+		} catch (Exception ex){
+			ex.printStackTrace();
+		}
 		
 		try{
 			

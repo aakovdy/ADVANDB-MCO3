@@ -38,7 +38,10 @@ public class MainDriver {
 		
 		//pass transactions to manager
 		
-		new view.NodeView();
+		//new view.NodeView();
+		
+		
+		
 		
 	}
 

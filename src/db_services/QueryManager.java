@@ -16,15 +16,20 @@ public class QueryManager {
 	public ResultSet processQuery(String query){
 		
 		Connection conn = DBConnection.getConnection();
-		
+		ResultSet rs = null;
 		try{
-			PreparedStatement pstmt = conn.prepareStatement(query);
 			
-			ResultSet rs =  pstmt.executeQuery();	// Returns the result set done by the query
+			PreparedStatement pstmt = conn.prepareStatement(query);
+			if(query.contains("INSERT") || query.contains("UPDATE") || query.contains("DELETE")){
+				pstmt.executeUpdate();
+			}else{
+			 rs =  pstmt.executeQuery();	// Returns the result set done by the query
+			}
 			
 			pstmt.close();
 			conn.close();
-			return rs;
+			if(query.contains("SELECT"))
+				return rs;
 			
 		} catch(Exception e){
 			e.printStackTrace();
@@ -32,6 +37,9 @@ public class QueryManager {
 		
 		return null;
 	}
+	
+	
+	
 	
 	public JTable displayQuery(ResultSet rs){
 		try {

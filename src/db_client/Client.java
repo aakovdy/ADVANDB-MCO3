@@ -1,6 +1,7 @@
 package db_client;
 
-import java.io.DataOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class Client implements Runnable {
@@ -8,6 +9,8 @@ public class Client implements Runnable {
 	int portNum;
 	String ipAddress;
 	String query;
+	ObjectOutputStream oos;
+	ObjectInputStream ois;
 	
 	public Client(int portNum, String ipAddress){
 		this.portNum = portNum;
@@ -30,9 +33,12 @@ public class Client implements Runnable {
 			// Connect to a server
 			Socket clientSocket = new Socket(ipAddress, portNum);
 			
-			DataOutputStream sendToServer = new DataOutputStream(clientSocket.getOutputStream());
+			// Write to socket using ObjectOutputStream
+			oos = new ObjectOutputStream(clientSocket.getOutputStream());
+			System.out.println("Sending request to SocketServer");
 			
 			// Send query or result set to server
+			
 			
 			clientSocket.close();
 			

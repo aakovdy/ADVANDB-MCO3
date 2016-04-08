@@ -3,10 +3,13 @@ package db_server;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import db_manager.DBConnection;
+
 public class Server implements Runnable {
 
 	int portNum;
 	ServerSocket socket;
+	
 	
 	public Server(int portNum){
 		this.portNum = portNum;

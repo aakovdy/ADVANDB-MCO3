@@ -41,6 +41,7 @@ public class Client implements Runnable {
 			oos = new ObjectOutputStream(clientSocket.getOutputStream());
 			
 			// Send query to server
+			oos.writeObject(query);
 			
 			
 			clientSocket.close();
